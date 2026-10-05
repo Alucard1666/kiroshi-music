@@ -26,9 +26,9 @@ import { IPC_CHANNELS } from '../../shared/ipcChannels.js';
 const require = createRequire(import.meta.url);
 const { SYSTEM_MEDIA } = IPC_CHANNELS;
 
-const DBUS_NAME = 'Orchard';
-const DISPLAY_NAME = 'Orchard';
-const DESKTOP_ENTRY = 'dev.sfg.orchard';
+const DBUS_NAME = 'kiroshi-music';
+const DISPLAY_NAME = 'Kiroshi Music';
+const DESKTOP_ENTRY = 'kiroshi-music';
 
 function loadAddon() {
   return require('../../native-media/index.cjs');

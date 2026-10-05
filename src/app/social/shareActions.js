@@ -234,7 +234,7 @@ export function installShareActions(ctx) {
     if (!url) return;
     try {
       await copyShareText(url);
-      ctx.showShareMessage(`Copied Orchard ${ctx.songShareDialog.value.collection ? 'collection' : 'song'} link.`);
+      ctx.showShareMessage(`Copied Kiroshi Music ${ctx.songShareDialog.value.collection ? 'collection' : 'song'} link.`);
     } catch (error) {
       ctx.showShareMessage(error.message || 'Could not copy link.', true);
     }
@@ -252,7 +252,7 @@ export function installShareActions(ctx) {
 
     try {
       await navigator.share({
-        title: dialog.collection?.title || dialog.song?.title || dialog.payload?.title || 'Orchard link',
+        title: dialog.collection?.title || dialog.song?.title || dialog.payload?.title || 'Kiroshi Music link',
         text: dialog.collection
           ? [dialog.collection.title, dialog.collection.subtitle].filter(Boolean).join(' - ')
           : [dialog.song?.title || dialog.payload?.title, dialog.song?.artist || dialog.payload?.artist].filter(Boolean).join(' - '),

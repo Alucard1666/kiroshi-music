@@ -50,14 +50,14 @@ function cleanAsset(asset, baseURL, label) {
   const base = new URL(baseURL);
   const url = new URL(name, base);
   if (url.origin !== base.origin || !url.pathname.startsWith(base.pathname)) {
-    throw new Error(`${label} points outside the Orchard package service.`);
+    throw new Error(`${label} points outside the Kiroshi Music package service.`);
   }
   return { name, size, sha256, url: url.toString() };
 }
 
 export function packageServiceInstallPaths({ appDataDirectory, cacheDirectory, electronVersion, target, version }) {
   if (!VERSION_PATTERN.test(version) || !VERSION_PATTERN.test(electronVersion)) {
-    throw new Error('The Orchard package version is invalid.');
+    throw new Error('The Kiroshi Music package version is invalid.');
   }
   const orchardRoot = path.join(appDataDirectory, 'orchard');
   const versionsRoot = path.join(orchardRoot, 'versions');
@@ -324,7 +324,7 @@ export async function preparePackageServiceUpdate({
   target
 }) {
   if (!VERSION_PATTERN.test(release?.version || '') || !VERSION_PATTERN.test(release?.electronVersion || '')) {
-    throw new Error('The selected Orchard release is invalid.');
+    throw new Error('The selected Kiroshi Music release is invalid.');
   }
   const native = release.native?.[target];
   const sharedAsset = cleanAsset(release.shared, baseURL, 'The common package');

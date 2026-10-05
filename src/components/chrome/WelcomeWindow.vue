@@ -18,25 +18,21 @@
 -->
 
 <script>
-import { computed, onMounted, reactive, ref, watch, defineAsyncComponent } from 'vue';
+import { computed, onMounted, reactive, ref, watch } from 'vue';
 import welcomeMusicUrl from '../../assets/welcome-lofi.mp3';
-
-const SupportView = defineAsyncComponent(() => import('../views/SupportView.vue'));
 
 export default {
   name: 'WelcomeWindow',
-  components: { SupportView },
   props: { app: { type: Object, required: true } },
   setup(props) {
     const audioRef = ref(null);
     const musicMuted = ref(false);
     const musicBlocked = ref(false);
     const stepIndex = ref(0);
-    const supportOpen = ref(false);
     const completionError = ref('');
     const completionPending = ref(false);
     const FULL_STEPS = [
-      { key: 'account', icon: 'music_note', title: 'Welcome to Orchard' },
+      { key: 'account', icon: 'music_note', title: 'Welcome to Kiroshi Music' },
       { key: 'layout', icon: 'view_quilt', title: 'Interface design' },
       { key: 'immersive', icon: 'wallpaper', title: 'Artwork background' },
       { key: 'sound', icon: 'graphic_eq', title: 'Tune playback' },
@@ -48,13 +44,13 @@ export default {
     // layout that did not exist when they last chose one.
     const canopyUpgrade = computed(() => props.app.welcomeMode.value === 'canopy-upgrade');
     const steps = computed(() => (canopyUpgrade.value
-      ? [{ key: 'layout', icon: 'view_quilt', title: 'A new look for Orchard' }]
+      ? [{ key: 'layout', icon: 'view_quilt', title: 'A new look for Kiroshi Music' }]
       : FULL_STEPS));
     const currentStep = computed(() => steps.value[stepIndex.value] || steps.value[0]);
     const accountReady = computed(() => props.app.authState.value.signedIn);
     const canGoNext = computed(() => canopyUpgrade.value || stepIndex.value > 0 || accountReady.value);
     const primaryLabel = computed(() => {
-      if (stepIndex.value === steps.value.length - 1) return 'Open Orchard';
+      if (stepIndex.value === steps.value.length - 1) return 'Open Kiroshi Music';
       if (stepIndex.value === 0) return accountReady.value ? 'Continue' : 'Sign in';
       return 'Next';
     });
@@ -85,7 +81,7 @@ export default {
         completionPending.value = true;
         const completed = await props.app.completeWelcomeSetup();
         completionPending.value = false;
-        if (!completed) completionError.value = props.app.errorMessage.value || 'Could not open Orchard.';
+        if (!completed) completionError.value = props.app.errorMessage.value || 'Could not open Kiroshi Music.';
         return;
       }
 
@@ -99,11 +95,6 @@ export default {
 
     function previousStep() {
       stepIndex.value = Math.max(0, stepIndex.value - 1);
-    }
-
-    function openSupport() {
-      supportOpen.value = true;
-      void props.app.loadSupportReports();
     }
 
     function finishIfAlreadyReady() {
@@ -140,14 +131,12 @@ export default {
       currentStep,
       musicBlocked,
       musicMuted,
-      openSupport,
       playWelcomeMusic,
       previousStep,
       primaryAction,
       primaryLabel,
       stepIndex,
       steps,
-      supportOpen,
       toggleMusicMuted,
       welcomeMusicUrl
     };
@@ -173,7 +162,7 @@ export default {
       <div class="welcome-window__hero-content">
         <div class="welcome-window__brand">
           <q-icon name="album" />
-          <h2>Orchard</h2>
+          <h2>Kiroshi Music</h2>
         </div>
         
         <div v-if="!canopyUpgrade" class="welcome-window__tracker" aria-label="Setup progress">
@@ -213,7 +202,7 @@ export default {
             <h1 id="welcome-title">{{ currentStep.title }}</h1>
 
             <template v-if="currentStep.key === 'account'">
-              <p>Sign in first. Orchard will keep the main player out of the way until your setup is ready.</p>
+              <p>Sign in first. Kiroshi Music will keep the main player out of the way until your setup is ready.</p>
               <div class="welcome-window__signin">
                 <button
                   type="button"
@@ -237,7 +226,7 @@ export default {
 
             <template v-else-if="currentStep.key === 'layout'">
               <p v-if="canopyUpgrade">
-                Orchard 4 adds Canopy, a new interface layout. Grove is still here and still your
+                Kiroshi Music adds Canopy, a new interface layout. Grove is still here and still your
                 current setting -- nothing else about your setup has changed.
               </p>
               <p v-else>Choose the interface layout that fits you best.</p>
@@ -258,7 +247,7 @@ export default {
             </template>
 
             <template v-else-if="currentStep.key === 'immersive'">
-              <p>Choose whether Orchard should use album artwork behind the player.</p>
+              <p>Choose whether Kiroshi Music should use album artwork behind the player.</p>
               <div class="welcome-window__setting-row">
                 <span>Immersive backgrounds</span>
                 <q-toggle v-model="app.immersiveBackgroundsEnabled" color="primary" aria-label="Immersive backgrounds" />
@@ -279,7 +268,7 @@ export default {
             </template>
 
             <template v-else-if="currentStep.key === 'sound'">
-              <p>Pick how Orchard should move through songs.</p>
+              <p>Pick how Kiroshi Music should move through songs.</p>
               <div class="welcome-window__sound-grid">
                 <button
                   type="button"
@@ -325,7 +314,7 @@ export default {
             </template>
 
             <template v-else-if="currentStep.key === 'connected'">
-              <p>Choose what Orchard shares outside the desktop window.</p>
+              <p>Choose what Kiroshi Music shares outside the desktop window.</p>
               <div class="welcome-window__connect-grid">
                 <div class="welcome-window__setting-row">
                   <span>Discord Rich Presence</span>
@@ -345,7 +334,7 @@ export default {
             </template>
 
             <template v-else>
-              <p>Setup is saved. Open Orchard and start listening.</p>
+              <p>Setup is saved. Open Kiroshi Music and start listening.</p>
               <div class="welcome-window__summary">
                 <span><q-icon name="check_circle" /> {{ app.authState.user?.name || 'Signed in' }}</span>
                 <span><q-icon name="view_quilt" /> {{ app.layoutPreset === 'canopy' ? 'Canopy layout' : 'Grove layout' }}</span>
@@ -360,22 +349,15 @@ export default {
       </div>
 
       <footer class="welcome-window__actions">
-        <button type="button" class="welcome-window__secondary" @click="openSupport">Support</button>
+        <div />
         <div>
           <button type="button" class="welcome-window__secondary" :disabled="stepIndex === 0" @click="previousStep">Previous</button>
           <button type="button" class="welcome-window__primary" :disabled="!canGoNext || completionPending" @click="primaryAction">
-            {{ completionPending ? 'Opening Orchard…' : primaryLabel }}
+            {{ completionPending ? 'Opening Kiroshi Music…' : primaryLabel }}
           </button>
         </div>
       </footer>
       <p v-if="completionError" class="welcome-window__completion-error" role="alert">{{ completionError }}</p>
     </section>
   </main>
-
-  <q-dialog v-model="supportOpen" maximized>
-    <div class="welcome-support-dialog">
-      <button type="button" class="welcome-support-dialog__close" title="Close support" @click="supportOpen = false"><q-icon name="close" /></button>
-      <SupportView :app="app" />
-    </div>
-  </q-dialog>
 </template>

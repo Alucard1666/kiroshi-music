@@ -34,7 +34,7 @@ export default {
       const activeTarget = props.app.activePlaybackTarget?.value;
       if (activeTarget && activeTarget !== 'local') {
         const phone = props.app.orchardConnect.value.devices?.find(d => d.id === activeTarget);
-        return phone ? (phone.name || 'Phone') : 'Orchard Phone';
+        return phone ? (phone.name || 'Phone') : 'Kiroshi Music Phone';
       }
       if (props.app.audioOutputLoading?.value) return 'Loading...';
       const activeId = props.app.audioEngineConfig.value?.outputDeviceId || 'default';
@@ -356,7 +356,7 @@ export default {
               </template>
 
               <q-separator dark class="q-my-xs" />
-              <q-item-label header class="text-weight-bold text-caption text-grey-5">Orchard Connect</q-item-label>
+              <q-item-label header class="text-weight-bold text-caption text-grey-5">Kiroshi Music Connect</q-item-label>
               <q-item v-if="!connectedConnectDevices || connectedConnectDevices.length === 0" disable>
                 <q-item-section class="text-grey text-caption">No phones connected</q-item-section>
               </q-item>

@@ -54,7 +54,7 @@ async function main() {
       size: 0
     },
     notes: [
-      'Official Orchard artist page pack with hosted SZA, NBA Youngboy, Tyler, Kendrick Lamar, Kanye West, Kehlani, and Jhené Aiko pages, using Album Wall banner metadata instead of custom banner images.'
+      'Official Kiroshi Music artist page pack with hosted SZA, NBA Youngboy, Tyler, Kendrick Lamar, Kanye West, Kehlani, and Jhené Aiko pages, using Album Wall banner metadata instead of custom banner images.'
     ],
     artists: {}
   };

@@ -248,7 +248,7 @@ export function installMediaHandlers(ctx) {
       return;
     }
 
-    const artist = ctx.activeArtist.value || 'Orchard';
+    const artist = ctx.activeArtist.value || 'Kiroshi Music';
     const artworkUrl = ctx.nowArtworkImage.value || ctx.activeTrack.value.thumbnail;
     const artwork = artworkUrl
       ? [
@@ -262,7 +262,7 @@ export function installMediaHandlers(ctx) {
       : [];
 
     navigator.mediaSession.metadata = new MediaMetadata({
-      title: ctx.activeTrack.value.title || 'Orchard',
+      title: ctx.activeTrack.value.title || 'Kiroshi Music',
       artist,
       album: ctx.activeTrack.value.album || ctx.activeTrack.value.subtitle || 'YouTube Music',
       artwork

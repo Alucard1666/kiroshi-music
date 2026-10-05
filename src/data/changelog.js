@@ -96,13 +96,13 @@ export const ORCHARD_RELEASES = [
           'Redesigned the fullscreen player with artwork-led visuals, responsive layouts, unified lyrics, a richer queue surface, and virtualized long queues.',
           'Refreshed album detail pages with artwork-derived accent palettes, ambient album and video presentation, and more expressive responsive visuals.',
           'Added customizable Home and sidebar layouts with persistent ordering, visibility controls, and reset actions.',
-          'Added Linux Debian/RPM and Windows NSIS installers for Orchard Packages, with managed package upgrades that replace direct Orchard installs.'
+          'Added Linux Debian/RPM and Windows NSIS installers for Kiroshi Music Packages, with managed package upgrades that replace direct Kiroshi Music installs.'
         ]
       },
       {
         title: 'Changed',
         items: [
-          'Orchard Packages now reports shared, native, and Electron runtime sizes, reuses one downloaded Electron runtime across versions, and supports opening or uninstalling managed releases without removing that runtime.',
+          'Kiroshi Music Packages now reports shared, native, and Electron runtime sizes, reuses one downloaded Electron runtime across versions, and supports opening or uninstalling managed releases without removing that runtime.',
           'Unified desktop audio analysis and transition rendering in the Earmark native runtime and expanded platform-native asset collection for packaged releases.'
         ]
       },
@@ -110,7 +110,7 @@ export const ORCHARD_RELEASES = [
         title: 'Fixed',
         items: [
           'Fixed shuffled playlist queues so starting from a track does not discard the remaining tracks, and fixed fullscreen queue performance and artwork synchronization while seeking.',
-          'Fixed Windows Orchard Packages launchers by safely terminating app paths and requiring the welcome entry point during installation validation, including legacy beta 6 layouts.'
+          'Fixed Windows Kiroshi Music Packages launchers by safely terminating app paths and requiring the welcome entry point during installation validation, including legacy beta 6 layouts.'
         ]
       },
       {
@@ -130,20 +130,20 @@ export const ORCHARD_RELEASES = [
       {
         title: 'New & improved',
         items: [
-          'Added offline music downloads for individual songs and full albums, artists, and playlists, with dedicated download management and playback while Orchard is offline.',
+          'Added offline music downloads for individual songs and full albums, artists, and playlists, with dedicated download management and playback while Kiroshi Music is offline.',
           'Improved Browse detail actions with visible labels, descriptive accessible names, and clearer responsive styling across artist and collection views.'
         ]
       },
       {
         title: 'Changed',
         items: [
-          'Moved the welcome and setup experience into a standalone renderer so it loads only the onboarding state it needs while preserving preferences, sign-in, Orchard Connect, and diagnostics.'
+          'Moved the welcome and setup experience into a standalone renderer so it loads only the onboarding state it needs while preserving preferences, sign-in, Kiroshi Music Connect, and diagnostics.'
         ]
       },
       {
         title: 'Fixed',
         items: [
-          'Corrected Windows launcher path resolution across installed Orchard Packages layouts and added coverage for package asset and opener behavior.'
+          'Corrected Windows launcher path resolution across installed Kiroshi Music Packages layouts and added coverage for package asset and opener behavior.'
         ]
       },
       {
@@ -199,7 +199,7 @@ export const ORCHARD_RELEASES = [
       {
         title: 'Fixed',
         items: [
-          'Fixed Orchard Packages beta installs so beta releases are discovered, downloaded, and opened from their GitHub release instead of the stable package service.'
+          'Fixed Kiroshi Music Packages beta installs so beta releases are discovered, downloaded, and opened from their GitHub release instead of the stable package service.'
         ]
       }
     ]
@@ -213,7 +213,7 @@ export const ORCHARD_RELEASES = [
         title: 'New & improved',
         items: [
           'Best Mix now ranks tracks by executable DJ choreography, with exact staged transition automation shared across the desktop and mobile playback engines.',
-          'Introduced the new Orchard package manager and a GitHub-backed updater with managed Linux package downloads and automatic beta-channel selection.',
+          'Introduced the new Kiroshi Music package manager and a GitHub-backed updater with managed Linux package downloads and automatic beta-channel selection.',
           'Improved responsive player, title bar, sidebar, fullscreen, and windowed layouts.'
         ]
       },
@@ -246,7 +246,7 @@ export const ORCHARD_RELEASES = [
       {
         title: 'Fixed',
         items: [
-          'Beta channel update checks now gracefully handle missing release manifests, reporting when Orchard is up to date or reminding you when the corresponding stable version has released so you can switch to the release channel.'
+          'Beta channel update checks now gracefully handle missing release manifests, reporting when Kiroshi Music is up to date or reminding you when the corresponding stable version has released so you can switch to the release channel.'
         ]
       },
       {

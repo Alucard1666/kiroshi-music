@@ -49,7 +49,7 @@ test('sets the Orchard identity and pin metadata on Windows windows', () => {
     appIconPath: 'C:\\Orchard\\resources\\icon.ico',
     appIconIndex: 0,
     relaunchCommand: '"C:\\Orchard\\electron.exe" "C:\\Orchard\\versions\\5.0.0"',
-    relaunchDisplayName: 'Orchard'
+    relaunchDisplayName: 'Kiroshi Music'
   });
 });
 

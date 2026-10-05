@@ -26,7 +26,7 @@ import {
   createAutoCrossfade
 } from '../../audio/crossfade/autoCrossfade.js';
 import { createWsolaCrossfade } from '../../audio/crossfade/wsolaCrossfade.js';
-import orchardLogoUrl from '../../assets/orchard-logo.png';
+import orchardLogoUrl from '../../assets/kiroshi-music-logo.png';
 import {
   ACCENT_COLOR_SOURCE_OPTIONS,
   APPEARANCE_DEFAULTS,
@@ -312,7 +312,7 @@ export function installState(ctx) {
   ctx.rightPanelMounted = computed(() => (
     !ctx.compactWindow.value &&
     (
-      !['settings', 'support'].includes(ctx.activeView.value) ||
+      ctx.activeView.value !== 'settings' ||
       (ctx.viewportWidth.value < 1281 && ctx.rightPanelOpen.value)
     )
   ));

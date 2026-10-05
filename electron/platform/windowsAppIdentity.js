@@ -17,7 +17,8 @@
  * along with Orchard. If not, see <https://www.gnu.org/licenses/>.
  */
 
-export const ORCHARD_APP_USER_MODEL_ID = 'dev.sfg.orchard';
+export const ORCHARD_APP_USER_MODEL_ID = 'kiroshi-music';
+export const KIROSHI_APP_USER_MODEL_ID = 'kiroshi-music';
 
 function quotedWindowsArgument(value) {
   return `"${String(value).replaceAll('"', '\\"')}"`;
@@ -32,7 +33,8 @@ export function setWindowsAppDetails(window, {
   appPath,
   appIconPath,
   executablePath = process.execPath,
-  platform = process.platform
+  platform = process.platform,
+  relaunchDisplayName = 'Kiroshi Music'
 } = {}) {
   if (platform !== 'win32') return;
 
@@ -42,7 +44,7 @@ export function setWindowsAppDetails(window, {
     details.appIconPath = appIconPath;
     details.appIconIndex = 0;
     details.relaunchCommand = relaunchCommand;
-    details.relaunchDisplayName = 'Orchard';
+    details.relaunchDisplayName = relaunchDisplayName;
   }
   window.setAppDetails(details);
 }

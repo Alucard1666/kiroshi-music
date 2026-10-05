@@ -56,12 +56,8 @@
 @import './styles/settings-song-cache.css';
 @import './styles/audio-engine.css';
 @import './styles/settings-readiness.css';
-@import './styles/support-view.css';
-@import './styles/support-github.css';
-@import './styles/support-responsive.css';
 @import './styles/sleep-timer.css';
 @import './styles/welcome-window.css';
-@import './styles/welcome-window-support.css';
 @import './styles/home-collection.css';
 @import './styles/collection-detail.css';
 @import './styles/artist-detail.css';

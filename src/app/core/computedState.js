@@ -128,7 +128,7 @@ export function installComputedState(ctx) {
   );
 
   ctx.showAuthGate = computed(() => (
-    !ctx.authState.value.signedIn && !['settings', 'support'].includes(ctx.activeView.value)
+    !ctx.authState.value.signedIn && ctx.activeView.value !== 'settings'
   ));
 
   ctx.authLabel = computed(() => {
@@ -628,7 +628,6 @@ export function installComputedState(ctx) {
     if (ctx.activeView.value === 'releaseRadar') return 'Release Radar';
     if (ctx.activeView.value === 'podcasts') return 'Podcasts';
     if (ctx.activeView.value === 'search') return 'Search';
-    if (ctx.activeView.value === 'support') return 'Support';
     if (ctx.activeView.value === 'settings') return 'Settings';
     return 'Home';
   });
@@ -636,7 +635,7 @@ export function installComputedState(ctx) {
   ctx.pageSubtitle = computed(() => {
     if (ctx.showAuthGate.value) return 'YouTube Music account required';
 
-    if (ctx.activeView.value === 'sectionMore') {
+    if (ctx.sectionMoreDetail.value?.items?.length || ctx.sectionMoreDetail.value?.sourceTitle) {
       const count = ctx.sectionMoreDetail.value?.items?.length || 0;
       const source = ctx.sectionMoreDetail.value?.sourceTitle;
       return [count ? `${count} items` : '', source].filter(Boolean).join(' from ');
@@ -653,7 +652,6 @@ export function installComputedState(ctx) {
     if (ctx.activeView.value === 'releaseRadar') return 'New and upcoming albums from followed artists';
     if (ctx.activeView.value === 'podcasts') return 'Shows and episodes from YouTube Music';
     if (ctx.activeView.value === 'search') return 'Pull results from the InnerTube bridge';
-    if (ctx.activeView.value === 'support') return 'Private reports and replies from Orchard Support';
     if (ctx.activeView.value === 'settings') return 'Playback, appearance, and app preferences';
     return ctx.authState.value.signedIn ? 'Your library, mixes, and recent picks' : 'Sign in to load your YouTube Music library';
   });

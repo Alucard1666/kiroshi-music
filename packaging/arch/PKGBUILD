@@ -1,56 +1,42 @@
-# Maintainer: SFG545 <sfg@sfg545.dev>
+# Maintainer: Kiroshi OS
 
-pkgname=orchard-packages
-pkgver=5.0.0
-pkgrel=4
-pkgdesc='Small desktop installer and version manager for Orchard'
+pkgname=kiroshi-music
+pkgver=5.0.0.beta.9
+pkgrel=1
+pkgdesc='YouTube Music client for Kiroshi OS'
 arch=('x86_64')
-url='https://github.com/sfg5453/orchard'
+url='https://github.com/Alucard1666/kiroshi-music'
 license=('AGPL-3.0-or-later')
-depends=('gtk3' 'webkit2gtk-4.1')
-makedepends=('bun' 'go')
-provides=('orchard')
+depends=('electron43')
 conflicts=('orchard')
 replaces=('orchard')
 options=('!strip')
 source=(
   "$pkgname-$pkgver.tar.zst"
-  'orchard-packages.desktop'
-  'orchard-packages.sh'
+  'kiroshi-music.desktop'
+  'kiroshi-music.sh'
 )
-sha256sums=('f0ea10ab0df53dccb6b1bb2aa5accb340ad93f7cfe97dc0237f6cfa61ed28409' 'c94216cfcbdc8bde050e4a8c5dfde7751802aff8b1c3ecb2f2d0bdd65285b23a' 'b8f0612493b5acf2c823b41894b4e21ffaf39d61139c9071992593284ebb5743')
-
-build() {
-  cd "$srcdir/$pkgname-$pkgver"
-  bun run build:frontend
-  bun run scripts/build-backend.ts linux-x64 --extension
-  bunx neu build
-}
+sha256sums=('d85fe4614e3c7878903f959b1f0a2a538e0702ac20909be57996b37215e9d429' '555f36f2bde2cd5f3cf6dade21a548e711f8ff4f08a12fe46b0dad8a89f1952a' '0e35fedde2b0faa51d1cf36158edfe18350bbc18cc839d1fe66d8237826c7601')
 
 package() {
-  cd "$srcdir/$pkgname-$pkgver"
+  install -d "$pkgdir/usr/lib/$pkgname"
+  cp -a "$srcdir/$pkgname-$pkgver/." "$pkgdir/usr/lib/$pkgname/"
 
-  install -Dm755 \
-    'dist/neutralino/orchard-packages/orchard-packages-linux_x64' \
-    "$pkgdir/usr/lib/orchard-packages/orchard-packages"
-  install -Dm644 \
-    'dist/neutralino/orchard-packages/resources.neu' \
-    "$pkgdir/usr/lib/orchard-packages/resources.neu"
-  install -Dm755 \
-    'extensions/orchard-packages-backend' \
-    "$pkgdir/usr/lib/orchard-packages/extensions/orchard-packages-backend"
-  install -Dm755 \
-    "$srcdir/orchard-packages.sh" \
-    "$pkgdir/usr/bin/orchard"
-  ln -s '../lib/orchard-packages/orchard-packages' \
-    "$pkgdir/usr/bin/orchard-packages"
-  install -Dm644 \
-    "$srcdir/orchard-packages.desktop" \
-    "$pkgdir/usr/share/applications/dev.sfg.orchard.desktop"
-  install -Dm644 \
-    'resources/icons/orchard-packages.png' \
-    "$pkgdir/usr/share/icons/hicolor/1024x1024/apps/dev.sfg.orchard.png"
-  install -Dm644 \
-    'LICENSE' \
-    "$pkgdir/usr/share/licenses/orchard-packages/LICENSE"
+  install -Dm755 "$srcdir/kiroshi-music.sh" "$pkgdir/usr/bin/kiroshi-music"
+  install -Dm644 "$srcdir/kiroshi-music.desktop" \
+    "$pkgdir/usr/share/applications/kiroshi-music.desktop"
+
+  for size in 16 32 48 64 128 256 512 1024; do
+    if [ -f "$pkgdir/usr/lib/$pkgname/resources/icons/${size}x${size}.png" ]; then
+      install -Dm644 "$pkgdir/usr/lib/$pkgname/resources/icons/${size}x${size}.png" \
+        "$pkgdir/usr/share/icons/hicolor/${size}x${size}/apps/kiroshi-music.png"
+    fi
+  done
+  if [ -f "$pkgdir/usr/lib/$pkgname/resources/icons/scalable.svg" ]; then
+    install -Dm644 "$pkgdir/usr/lib/$pkgname/resources/icons/scalable.svg" \
+      "$pkgdir/usr/share/icons/hicolor/scalable/apps/kiroshi-music.svg"
+  fi
+
+  install -Dm644 "$pkgdir/usr/lib/$pkgname/LICENSE" \
+    "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }

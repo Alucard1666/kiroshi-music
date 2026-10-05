@@ -190,7 +190,7 @@ export function installConnectionActions(ctx) {
   };
 
   ctx.selectView = function selectView(view) {
-    if (!ctx.authState.value.signedIn && !['home', 'settings', 'support'].includes(view)) {
+    if (!ctx.authState.value.signedIn && !['home', 'settings'].includes(view)) {
       ctx.resetNavigation('home');
       ctx.errorMessage.value = '';
       ctx.warningMessage.value = '';
@@ -498,7 +498,7 @@ export function installConnectionActions(ctx) {
         if (confirmsNoInternet(error)) {
           ctx.networkOffline.value = true;
           ctx.errorMessage.value = '';
-          ctx.warningMessage.value = 'Orchard is offline. Showing downloaded music.';
+          ctx.warningMessage.value = 'Kiroshi Music is offline. Showing downloaded music.';
         } else {
           ctx.errorMessage.value = error.message;
         }

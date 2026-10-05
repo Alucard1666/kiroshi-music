@@ -31,7 +31,7 @@ export default {
   <section id="settings-diagnostics" class="settings-section diagnostics-section" aria-labelledby="settings-diagnostics-title">
     <div class="settings-section__heading">
       <h2 id="settings-diagnostics-title">Diagnostics</h2>
-      <p>{{ diagnostics.generatedAt ? `Last refreshed ${new Date(diagnostics.generatedAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}` : 'Check Orchard before release or support.' }}</p>
+      <p>{{ diagnostics.generatedAt ? `Last refreshed ${new Date(diagnostics.generatedAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}` : 'Check Kiroshi Music diagnostics.' }}</p>
     </div>
 
     <div class="diagnostics-section__actions">

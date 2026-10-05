@@ -166,7 +166,7 @@ async function loadStoredDevices(deviceStorePath) {
         lastSeenAt: Number(device.lastSeenAt) || 0
       }));
   } catch (error) {
-    if (error?.code !== 'ENOENT') console.warn(`Could not load Orchard Connect devices: ${error.message}`);
+    if (error?.code !== 'ENOENT') console.warn(`Could not load Kiroshi Music Connect devices: ${error.message}`);
     return [];
   }
 }
@@ -184,7 +184,7 @@ async function saveStoredDevices(deviceStorePath, devices) {
     await fs.writeFile(tmpPath, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
     await fs.rename(tmpPath, deviceStorePath);
   } catch (error) {
-    console.warn(`Could not save Orchard Connect devices: ${error.message}`);
+    console.warn(`Could not save Kiroshi Music Connect devices: ${error.message}`);
   }
 }
 
@@ -243,7 +243,7 @@ export async function createOrchardConnectServer({ Server, desktopIo, deviceStor
         'Content-Type': 'application/json; charset=utf-8'
       });
       res.end(JSON.stringify({
-        name: 'Orchard Connect',
+        name: 'Kiroshi Music Connect',
         serverUrl: baseUrl(),
         port: httpServer.address().port,
         preferredPort: preferredConnectPort,

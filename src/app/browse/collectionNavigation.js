@@ -102,7 +102,7 @@ export async function openCollectionWithLoading(ctx, kind, item) {
     const offlineDetail = definitelyOffline ? ctx.offlineBrowseDetail?.(kind, item) : null;
     if (offlineDetail) {
       showDetail(offlineDetail, { offline: true });
-      ctx.warningMessage.value = 'Showing downloaded music while Orchard is offline.';
+      ctx.warningMessage.value = 'Showing downloaded music while Kiroshi Music is offline.';
       await nextTick();
       ctx.writeLastPageEntry();
       return;

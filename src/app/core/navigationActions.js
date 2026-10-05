@@ -21,8 +21,8 @@ import { readSessionValue, writeSessionValue } from './sessionStore.js';
 
 export function installNavigationActions(ctx) {
   const lastPageStorageKey = 'orchard:last-page';
-  const validViews = new Set(['home', 'queue', 'history', 'replay', 'releaseRadar', 'podcasts', 'pins', 'search', 'browse', 'sectionMore', 'settings', 'support']);
-  const signedOutViews = new Set(['home', 'settings', 'support']);
+  const validViews = new Set(['home', 'queue', 'history', 'replay', 'releaseRadar', 'podcasts', 'pins', 'search', 'browse', 'sectionMore', 'settings']);
+  const signedOutViews = new Set(['home', 'settings']);
   let didRestoreStartupPage = false;
   let restoredQueryChangePending = false;
 

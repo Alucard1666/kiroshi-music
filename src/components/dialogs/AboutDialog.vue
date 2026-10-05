@@ -37,7 +37,7 @@ export default {
       try {
         await window.orchardApp?.viewLicense?.();
       } catch (error) {
-        console.warn('Could not open the Orchard license.', error);
+        console.warn('Could not open the Kiroshi Music license.', error);
       }
     }
   },
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <template>
-  <q-dialog v-model="aboutDialogOpen" aria-label="About Orchard">
+  <q-dialog v-model="aboutDialogOpen" aria-label="About Kiroshi Music">
     <q-card class="about-dialog-card">
       <q-btn
         v-close-popup
@@ -61,8 +61,8 @@ export default {
       />
 
       <div class="about-dialog__content">
-        <img class="about-dialog__logo" :src="orchardLogoUrl" alt="Orchard" />
-        <div class="about-dialog__name">Orchard</div>
+        <img class="about-dialog__logo" :src="orchardLogoUrl" alt="Kiroshi Music" />
+        <div class="about-dialog__name">Kiroshi Music</div>
         <div class="about-dialog__version">Version {{ currentReleaseLabel }}</div>
         <div class="about-dialog__license">
           <span>License</span>
@@ -114,10 +114,10 @@ export default {
         />
         <a
           class="about-dialog__website"
-          href="https://sfg545.dev/orchard"
+          href="https://github.com/Alucard1666/KiroshiOS"
           target="_blank"
           rel="noopener noreferrer"
-        >sfg545.dev/orchard</a>
+        >github.com/Alucard1666/KiroshiOS</a>
       </div>
     </q-card>
   </q-dialog>

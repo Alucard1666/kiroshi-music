@@ -31,7 +31,7 @@ export function packageServiceTarget(platform = process.platform, architecture =
 
 export function selectPackageServiceRelease(manifest, { channel, currentVersion, target }) {
   if (manifest?.schemaVersion !== 1 || !Array.isArray(manifest.releases)) {
-    throw new Error('The Orchard package manifest is invalid.');
+    throw new Error('The Kiroshi Music package manifest is invalid.');
   }
 
   const releases = manifest.releases

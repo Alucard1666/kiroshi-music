@@ -39,10 +39,10 @@ export function createArtistPackService({ app, BrowserWindow, dialog, devOfficia
 
   async function importPack() {
     const result = await dialog.showOpenDialog(BrowserWindow.getFocusedWindow() || undefined, {
-      title: 'Import Orchard artist page',
+      title: 'Import Kiroshi Music artist page',
       properties: ['openFile'],
       filters: [
-        { name: 'Orchard artist pages', extensions: ['orchardpack', 'zip', 'zst'] },
+        { name: 'Kiroshi Music artist pages', extensions: ['orchardpack', 'zip', 'zst'] },
         { name: 'All files', extensions: ['*'] }
       ]
     });
@@ -155,7 +155,7 @@ function archiveZipBytes(bytes) {
   if (!isZstdFrame(archive)) return archive;
 
   if (typeof zstdDecompressSync !== 'function') {
-    throw new Error('This Orchard build cannot read Zstandard artist packs.');
+    throw new Error('This Kiroshi Music build cannot read Zstandard artist packs.');
   }
 
   return zstdDecompressSync(archive, { maxOutputLength: ARTIST_PACK_MAX_BYTES });

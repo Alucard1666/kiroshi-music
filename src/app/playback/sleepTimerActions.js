@@ -53,8 +53,8 @@ export function installSleepTimerActions(ctx) {
       : timerClock(ctx.sleepTimerRemainingSeconds.value)
   ));
   ctx.sleepTimerSummary = computed(() => {
-    if (ctx.sleepTimerMode.value === 'end-track') return 'Orchard will pause when this song ends.';
-    if (ctx.sleepTimerMode.value !== 'off') return `Orchard will pause in ${ctx.sleepTimerStatus.value}.`;
+    if (ctx.sleepTimerMode.value === 'end-track') return 'Kiroshi Music will pause when this song ends.';
+    if (ctx.sleepTimerMode.value !== 'off') return `Kiroshi Music will pause in ${ctx.sleepTimerStatus.value}.`;
     return 'Pause playback after a set time or when the current song ends.';
   });
 

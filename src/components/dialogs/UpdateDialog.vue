@@ -28,11 +28,11 @@ export default {
 </script>
 
 <template>
-  <q-dialog v-model="updateDialogOpen" aria-label="Orchard updates">
+  <q-dialog v-model="updateDialogOpen" aria-label="Kiroshi Music updates">
     <q-card class="update-dialog">
       <header class="update-dialog__header">
         <div>
-          <div class="update-dialog__title">Orchard updates</div>
+          <div class="update-dialog__title">Kiroshi Music updates</div>
           <div class="update-dialog__subtitle">{{ updateStatusLabel }}</div>
         </div>
         <q-btn v-close-popup flat round dense icon="close" aria-label="Close updates" />

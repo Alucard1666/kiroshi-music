@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Kiroshi Music
+Comment=YouTube Music client for Kiroshi OS
+Exec=kiroshi-music %U
+Icon=kiroshi-music
+Terminal=false
+Categories=AudioVideo;Audio;Player;
+StartupNotify=true
+StartupWMClass=kiroshi-music

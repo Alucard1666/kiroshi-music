@@ -140,7 +140,7 @@ export default {
           </button>
 
           <p v-if="!songShareDialog.links.length" class="song-share-dialog__empty">
-            Orchard created the share page. Copy the link to send it.
+            Kiroshi Music created the share page. Copy the link to send it.
           </p>
         </div>
       </section>

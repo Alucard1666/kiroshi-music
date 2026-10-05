@@ -96,7 +96,7 @@ export function installLastfmScrobbling(ctx) {
     ctx.lastfmMessage.value = '';
     try {
       setState(await window.orchardLastfm.connect());
-      ctx.lastfmMessage.value = 'Approve Orchard in your browser, then finish connecting here.';
+      ctx.lastfmMessage.value = 'Approve Kiroshi Music in your browser, then finish connecting here.';
     } catch (error) {
       setError(error, 'Could not start Last.fm connection.');
     }

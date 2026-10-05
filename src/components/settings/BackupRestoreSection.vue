@@ -48,7 +48,7 @@ export default {
   <section id="settings-backup" class="settings-section backup-section" aria-labelledby="settings-backup-title">
     <div class="settings-section__heading">
       <h2 id="settings-backup-title">Backup</h2>
-      <p>Move local Orchard settings and listening data between installs.</p>
+      <p>Move local Kiroshi Music settings and listening data between installs.</p>
     </div>
 
     <div class="settings-action-row backup-section__row">
@@ -65,7 +65,7 @@ export default {
     <div class="settings-action-row backup-section__row">
       <div class="settings-row__copy">
         <span>Restore data</span>
-        <p>Imports an Orchard backup into this install. Restart after restoring to fully reload saved playback state.</p>
+        <p>Imports a Kiroshi Music backup into this install. Restart after restoring to fully reload saved playback state.</p>
       </div>
       <button type="button" class="settings-button" @click="fileInput?.click()">
         <q-icon name="upload_file" />

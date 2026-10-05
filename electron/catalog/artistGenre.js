@@ -69,7 +69,7 @@ export function createArtistGenreResolver({ fetcher = fetch } = {}) {
       const response = await fetcher(url, {
         headers: {
           accept: 'application/json',
-          'user-agent': 'Orchard Artist Metadata/2.1'
+          'user-agent': 'Kiroshi Music Artist Metadata/2.1'
         }
       });
       if (response.ok) return response.json();

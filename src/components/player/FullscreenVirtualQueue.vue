@@ -102,7 +102,7 @@ export default {
         <span v-else class="fullscreen-player__queue-cover"><q-icon name="music_note" /></span>
         <span class="fullscreen-player__queue-copy">
           <strong>{{ entryTrack(cell.row).title }}</strong>
-          <span>{{ entryTrack(cell.row).artist || entryTrack(cell.row).artists?.join(', ') || entryTrack(cell.row).album || 'Orchard' }}</span>
+          <span>{{ entryTrack(cell.row).artist || entryTrack(cell.row).artists?.join(', ') || entryTrack(cell.row).album || 'Kiroshi Music' }}</span>
         </span>
         <span class="fullscreen-player__queue-time">{{ entryTrack(cell.row).duration || '' }}</span>
         <button

@@ -125,7 +125,7 @@ export default {
 <template>
   <div class="settings-row settings-row--options" id="settings-orchard-account">
     <div class="settings-row__copy">
-      <label>Orchard Cloud Sync &amp; Account</label>
+      <label>Kiroshi Music Cloud Sync &amp; Account</label>
       <p v-if="user">
         Signed in as <strong>{{ user.email }}</strong>. Playlist analysis performed on PC will sync to your mobile devices.
       </p>

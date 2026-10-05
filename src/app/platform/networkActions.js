@@ -40,8 +40,8 @@ export function installNetworkActions(ctx) {
       // requested again, so say so rather than leaving the listener staring at
       // the same empty artwork wondering whether the setting took.
       ctx.proxyModeMessage.value = ctx.proxyMode.value === 'direct'
-        ? 'Orchard now ignores the system proxy. Restart Orchard if album art is still missing.'
-        : 'Orchard now follows the system proxy.';
+        ? 'Kiroshi Music now ignores the system proxy. Restart Kiroshi Music if album art is still missing.'
+        : 'Kiroshi Music now follows the system proxy.';
     } catch (error) {
       ctx.proxyModeMessage.value = `Could not change the proxy setting. ${error?.message || error}`;
     }

@@ -42,7 +42,7 @@ function clamp(value, min, max) {
 function trackArtist(track = {}) {
   if (track.artist) return String(track.artist);
   if (Array.isArray(track.artists) && track.artists.length) return track.artists.join(', ');
-  return String(track.album || 'Orchard');
+  return String(track.album || 'Kiroshi Music');
 }
 
 function deck(track = {}, artwork = '') {

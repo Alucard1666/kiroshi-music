@@ -537,7 +537,7 @@ jobs:
       - name: Install Arch build tools
         run: |
           pacman -Syu --noconfirm \
-            bun git go libarchive nodejs npm python unzip webkit2gtk-4.1 zstd
+            git nodejs npm rust cargo electron43 zstd
           useradd --create-home builder
 
       - name: Check out release tag
@@ -545,17 +545,12 @@ jobs:
         with:
           ref: ${{ needs.prepare.outputs.tag }}
 
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: ${{ env.BUN_VERSION }}
-
       - name: Build Arch package
         run: |
           set -euo pipefail
           chown -R builder:builder "$GITHUB_WORKSPACE"
           runuser -u builder -- env HOME=/home/builder PATH="$PATH" \
-            sh -c 'cd "$1" && bun run package:orchard-packages:arch' _ "$GITHUB_WORKSPACE"
+            sh -c 'cd "$1" && npm run package:arch' _ "$GITHUB_WORKSPACE"
 
       - name: Save Arch Linux package
         uses: actions/upload-artifact@v7
@@ -751,6 +746,7 @@ jobs:
           aws s3 cp release-assets/ "s3://$R2_BUCKET/" \
             --endpoint-url "$R2_ENDPOINT" \
             --exclude '*' \
+            --include 'kiroshi-music*.tar.zst' \
             --include 'orchard*.tar.zst' \
             --include 'orchard*.zip' \
             --include 'orchard*.deb' \
@@ -858,7 +854,7 @@ jobs:
         run: |
           set -euo pipefail
           notes=build/release-notes.md
-          title="Orchard $VERSION (beta)"
+          title="Kiroshi Music $VERSION (beta)"
           if [[ "$MOBILE_ONLY" == "true" ]]; then
             notes=mobile/release-notes.md
             title="Orchard Mobile $VERSION (beta)"

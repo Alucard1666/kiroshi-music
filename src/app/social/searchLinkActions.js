@@ -208,7 +208,7 @@ export function installSearchLinkActions(ctx) {
 
   ctx.openOrchardSongLink = async function openOrchardSongLink(link) {
     const response = await fetch(new URL(`/api/songs/${encodeURIComponent(link.id)}`, link.origin || songLinksOrigin));
-    if (!response.ok) throw new Error(`Orchard link could not be opened (${response.status}).`);
+    if (!response.ok) throw new Error(`Kiroshi Music link could not be opened (${response.status}).`);
 
     const data = await response.json();
     const id = videoId(data?.song?.youtubeVideoId) ||
@@ -218,16 +218,16 @@ export function installSearchLinkActions(ctx) {
       return;
     }
 
-    throw new Error('That Orchard link does not include a YouTube track.');
+    throw new Error('That Kiroshi Music link does not include a YouTube track.');
   };
 
   ctx.openOrchardCollectionLink = async function openOrchardCollectionLink(link) {
     const response = await fetch(new URL(`/api/collections/${encodeURIComponent(link.id)}`, link.origin || songLinksOrigin));
-    if (!response.ok) throw new Error(`Orchard collection link could not be opened (${response.status}).`);
+    if (!response.ok) throw new Error(`Kiroshi Music collection link could not be opened (${response.status}).`);
 
     const data = await response.json();
     const collection = data?.collection || {};
-    if (!data?.ok || !collection?.kind) throw new Error('That Orchard collection link is incomplete.');
+    if (!data?.ok || !collection?.kind) throw new Error('That Kiroshi Music collection link is incomplete.');
 
     if (!collection.orchardOnly && collection.browseId) {
       await ctx.openLinkedCollection({
@@ -261,8 +261,8 @@ export function installSearchLinkActions(ctx) {
     ctx.browseDetail.value = {
       kind: collection.kind || 'playlist',
       title: collection.title || 'Shared playlist',
-      subtitle: collection.subtitle || 'Shared with Orchard',
-      description: collection.orchardOnly ? 'Shared as an Orchard-only playlist snapshot.' : '',
+      subtitle: collection.subtitle || 'Shared with Kiroshi Music',
+      description: collection.orchardOnly ? 'Shared as a Kiroshi Music playlist snapshot.' : '',
       thumbnail: collection.thumbnailUrl || tracks[0]?.thumbnail || null,
       browseId: collection.browseId || `orchard:${link.id}`,
       itemCount: collection.itemCount || `${tracks.length} tracks`,

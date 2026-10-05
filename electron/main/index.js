@@ -21,6 +21,7 @@
 // injects privileged capabilities into isolated services and IPC registrars.
 import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
+import fs from 'node:fs';
 import path from 'node:path';
 import { setupQobuzElectron } from '@orchardmusic/qobuz/electron';
 import { Platform } from 'youtubei.js';
@@ -94,7 +95,31 @@ installInnertubeParserErrorHandler();
 const require = createRequire(import.meta.url);
 const windowStateKeeper = require('electron-window-state');
 const { app, BrowserWindow, Menu, Tray, clipboard, globalShortcut, ipcMain, nativeImage, net, safeStorage, screen, session, shell } = require('electron');
+
+app.setName('Kiroshi Music');
+if (process.platform === 'linux') {
+  app.setDesktopName?.('kiroshi-music.desktop');
+  app.commandLine.appendSwitch('class', 'kiroshi-music');
+  app.commandLine.appendSwitch('name', 'kiroshi-music');
+  app.commandLine.appendSwitch('wayland-app-id', 'kiroshi-music');
+}
 if (process.platform === 'win32') app.setAppUserModelId(ORCHARD_APP_USER_MODEL_ID);
+
+// One-time userData migration: move old Orchard data to Kiroshi Music before reading
+const appData = app.getPath('appData');
+const oldUserData = [path.join(appData, 'orchard'), path.join(appData, 'Orchard')].find((dir) => fs.existsSync(dir));
+const newUserData = app.getPath('userData');
+if (oldUserData && oldUserData !== newUserData && !fs.existsSync(newUserData)) {
+  try {
+    fs.renameSync(oldUserData, newUserData);
+  } catch {
+    try {
+      fs.cpSync(oldUserData, newUserData, { recursive: true });
+      fs.rmSync(oldUserData, { recursive: true, force: true });
+    } catch {}
+  }
+}
+
 const isDev = !app.isPackaged && Boolean(process.env.VITE_DEV_SERVER_URL);
 const isNiriSession = process.platform === 'linux' && (
   Boolean(process.env.NIRI_SOCKET) || /(?:^|:)niri(?:$|:)/i.test(process.env.XDG_CURRENT_DESKTOP || '')
@@ -436,6 +461,7 @@ async function createMainWindow() {
   });
 
   mainWindow = new BrowserWindow({
+    title: 'Kiroshi Music',
     ...(isNiriSession ? {} : { x: windowState.x, y: windowState.y }),
     width: isNiriSession ? 1100 : windowState.width,
     height: isNiriSession ? 760 : windowState.height,
@@ -486,6 +512,7 @@ async function createMainWindow() {
 async function createWelcomeWindow() {
   const bounds = welcomeWindowBounds(screen.getPrimaryDisplay().workAreaSize);
   welcomeWindow = new BrowserWindow({
+    title: 'Kiroshi Music',
     ...bounds,
     autoHideMenuBar: true,
     frame: useNativeTitlebar,
@@ -577,7 +604,7 @@ app.whenReady().then(async () => {
   setupSpotify({ app, ipcMain, net, safeStorage });
   const qobuz = setupQobuzElectron({
     app,
-    applicationName: 'Orchard',
+    applicationName: 'Kiroshi Music',
     BrowserWindow,
     ipcChannels: IPC_CHANNELS.QOBUZ,
     ipcMain,

@@ -111,7 +111,7 @@ export default {
       <section id="settings-playback" class="settings-section" aria-labelledby="settings-playback-title">
         <div class="settings-section__heading">
           <h2 id="settings-playback-title">Playback</h2>
-          <p>Control how Orchard moves between tracks.</p>
+          <p>Control how Kiroshi Music moves between tracks.</p>
         </div>
 
         <div class="settings-row">
@@ -125,7 +125,7 @@ export default {
         <div class="settings-row">
           <div class="settings-row__copy">
             <label for="settings-save-playback-state">Save queue and current song</label>
-            <p>Restore the last queue and song when Orchard starts.</p>
+            <p>Restore the last queue and song when Kiroshi Music starts.</p>
           </div>
           <q-toggle id="settings-save-playback-state" v-model="playbackStatePersistenceEnabled" color="primary" aria-label="Save queue and current song" />
         </div>
@@ -275,7 +275,7 @@ export default {
         <div class="settings-row settings-row--slider">
           <div class="settings-row__copy">
             <label for="settings-ui-scale">Text and interface size</label>
-            <p>Scale Orchard for readability without changing your display settings.</p>
+            <p>Scale Kiroshi Music for readability without changing your display settings.</p>
           </div>
           <div class="settings-slider">
             <q-slider id="settings-ui-scale" v-model="uiScaleDraft" :min="0.85" :max="1.5" :step="0.05" color="primary" aria-label="Text and interface size" @change="applyUiScale" />
@@ -310,7 +310,7 @@ export default {
               Automatic uses Electron defaults. Integrated GPU prefers lower-power graphics. Changes require a restart.
             </p>
             <p v-if="graphicsModePlatform === 'linux' && graphicsModeIntegratedSupported">
-              On Linux, Orchard selects the detected integrated adapter directly.
+              On Linux, Kiroshi Music selects the detected integrated adapter directly.
             </p>
             <p v-else-if="graphicsModeStatusReady && !graphicsModeIntegratedSupported">
               Integrated GPU selection is unavailable on this platform.
@@ -341,11 +341,11 @@ export default {
         <div v-if="graphicsModeRestartRequired" class="settings-action-row">
           <div class="settings-row__copy">
             <span>Restart required</span>
-            <p>Restart Orchard to apply {{ graphicsModeOptions.find((option) => option.value === graphicsMode)?.label || 'the selected graphics mode' }}.</p>
+            <p>Restart Kiroshi Music to apply {{ graphicsModeOptions.find((option) => option.value === graphicsMode)?.label || 'the selected graphics mode' }}.</p>
           </div>
           <button type="button" class="settings-button" @click="restartOrchard">
             <q-icon name="restart_alt" />
-            Restart Orchard
+            Restart Kiroshi Music
           </button>
         </div>
 
@@ -402,7 +402,7 @@ export default {
         <div class="settings-row settings-row--options">
           <div class="settings-row__copy">
             <label id="settings-accent-source-label">Accent color</label>
-            <p>Color controls and highlights from the artwork, Orchard, or your own choice.</p>
+            <p>Color controls and highlights from the artwork, Kiroshi Music, or your own choice.</p>
           </div>
           <div class="settings-option-group" role="group" aria-labelledby="settings-accent-source-label">
             <button
@@ -426,7 +426,7 @@ export default {
         <div class="settings-row settings-row--options">
           <div class="settings-row__copy">
             <label id="settings-theme-label">Theme</label>
-            <p>Use Orchard dark, true black OLED, or follow the operating system.</p>
+            <p>Use Kiroshi Music dark, true black OLED, or follow the operating system.</p>
           </div>
           <div class="settings-option-group" role="group" aria-labelledby="settings-theme-label">
             <button
@@ -447,7 +447,7 @@ export default {
       <section id="settings-integrations" class="settings-section" aria-labelledby="settings-integrations-title">
         <div class="settings-section__heading">
           <h2 id="settings-integrations-title">Integrations</h2>
-          <p>Manage what Orchard shares with other desktop apps.</p>
+          <p>Manage what Kiroshi Music shares with other desktop apps.</p>
         </div>
 
         <div class="settings-row">
@@ -466,7 +466,7 @@ export default {
         <div class="settings-row">
           <div class="settings-row__copy">
             <label for="settings-youtube-history">Send listening history to YouTube</label>
-            <p>Tracks played in Orchard are added to the signed-in YouTube Music history.</p>
+            <p>Tracks played in Kiroshi Music are added to the signed-in YouTube Music history.</p>
           </div>
           <q-toggle id="settings-youtube-history" v-model="youtubeHistoryEnabled" color="primary" aria-label="Send listening history to YouTube" />
         </div>
@@ -474,7 +474,7 @@ export default {
 
       <section id="settings-connect" class="settings-section" aria-labelledby="settings-connect-title">
         <div class="settings-section__heading">
-          <h2 id="settings-connect-title">Orchard Connect</h2>
+          <h2 id="settings-connect-title">Kiroshi Music Connect</h2>
           <p>Pair a phone on your LAN and approve it before it can control playback.</p>
         </div>
 
@@ -532,7 +532,7 @@ export default {
           >
             <div class="settings-row__copy">
               <span>{{ request.name }}</span>
-              <p>Approve this phone before it can control Orchard.</p>
+              <p>Approve this phone before it can control Kiroshi Music.</p>
             </div>
             <div class="settings-connect__actions">
               <button type="button" class="settings-button" @click="approveOrchardConnectPairing(request.id)">Approve</button>
@@ -564,13 +564,13 @@ export default {
       <section id="settings-application" class="settings-section" aria-labelledby="settings-application-title">
         <div class="settings-section__heading">
           <h2 id="settings-application-title">Application</h2>
-          <p>Orchard {{ currentReleaseLabel }}</p>
+          <p>Kiroshi Music {{ currentReleaseLabel }}</p>
         </div>
 
         <div class="settings-row">
           <div class="settings-row__copy">
             <label for="settings-close-to-tray">Close to tray</label>
-            <p>Closing the window keeps Orchard playing in the tray instead of quitting. Quit from the tray menu.</p>
+            <p>Closing the window keeps Kiroshi Music playing in the tray instead of quitting. Quit from the tray menu.</p>
           </div>
           <q-toggle id="settings-close-to-tray" v-model="closeToTrayEnabled" color="primary" aria-label="Close to tray" />
         </div>
@@ -597,9 +597,9 @@ export default {
         <div class="settings-row">
           <div class="settings-row__copy">
             <label for="settings-keep-old-versions">Keep old versions</label>
-            <p>Retain replaced Orchard application folders after an update. Turn this off to remove older versions when the new one is activated.</p>
+            <p>Retain replaced Kiroshi Music application folders after an update. Turn this off to remove older versions when the new one is activated.</p>
           </div>
-          <q-toggle id="settings-keep-old-versions" v-model="keepOldVersions" color="primary" aria-label="Keep old Orchard versions" />
+          <q-toggle id="settings-keep-old-versions" v-model="keepOldVersions" color="primary" aria-label="Keep old Kiroshi Music versions" />
         </div>
 
         <div class="settings-actions">
@@ -609,7 +609,7 @@ export default {
           </button>
           <button type="button" class="settings-link-button" @click="aboutDialogOpen = true">
             <q-icon name="info_outline" />
-            About Orchard
+            About Kiroshi Music
           </button>
           <button type="button" class="settings-link-button settings-link-button--danger" @click="resetUserPreferences">
             <q-icon name="restart_alt" />
@@ -626,7 +626,7 @@ export default {
       >
         <div class="settings-section__heading">
           <h2 id="settings-network-title">Network</h2>
-          <p>How Orchard reaches the internet.</p>
+          <p>How Kiroshi Music reaches the internet.</p>
         </div>
 
         <div class="settings-row">

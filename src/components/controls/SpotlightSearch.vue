@@ -69,7 +69,7 @@ export default {
         class="spotlight-search"
         role="dialog"
         aria-modal="true"
-        aria-label="Search Orchard"
+        aria-label="Search Kiroshi Music"
         :style="playerBarStyle"
         @keydown="onSpotlightKeydown"
       >

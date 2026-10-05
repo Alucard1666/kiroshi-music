@@ -76,7 +76,7 @@ export default {
       </div>
 
       <p class="live-shows-dialog__privacy">
-        Your location is sent only to Orchard's concert service to perform this search.
+        Your location is sent only to Kiroshi Music's concert service to perform this search.
       </p>
     </q-card>
   </q-dialog>

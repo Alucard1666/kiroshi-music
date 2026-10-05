@@ -50,6 +50,6 @@ test('jitless audio profile validation preserves the public profile contract', (
   assert.equal(profile.config.balance, 0);
   assert.throws(
     () => parseAudioEngineProfile({ app: 'other', type: 'audio-engine-profile', version: 1, config: {} }),
-    /not a valid Orchard audio profile/
+    /not a valid Kiroshi Music audio profile/
   );
 });

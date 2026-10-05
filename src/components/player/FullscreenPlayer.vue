@@ -226,7 +226,7 @@ export default {
 
     <header class="fullscreen-player__header">
       <div class="fullscreen-player__context" aria-hidden="true">
-        <span>Orchard</span>
+        <span>Kiroshi Music</span>
         <i />
         <span>Now Playing</span>
       </div>
@@ -385,7 +385,7 @@ export default {
                 :title="activeArtist ? `View artist: ${activeArtist}` : undefined"
                 @click="openTrackArtistFromFullscreen"
               >
-                {{ activeArtist || 'Orchard' }}
+                {{ activeArtist || 'Kiroshi Music' }}
               </button>
               <ExplicitBadge :explicit="activeTrack?.explicit" />
               <small v-if="bitrateLabel(activeTrack)">{{ bitrateLabel(activeTrack) }} kbps</small>

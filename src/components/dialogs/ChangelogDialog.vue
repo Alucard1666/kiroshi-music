@@ -40,7 +40,7 @@ export default {
 </script>
 
 <template>
-  <q-dialog v-model="changelogDialogOpen" aria-label="What's new in Orchard">
+  <q-dialog v-model="changelogDialogOpen" aria-label="What's new in Kiroshi Music">
     <q-card class="changelog-dialog" :class="{ 'changelog-dialog--single': !hasMultipleChangelogTabs }">
       <header class="changelog-dialog__header">
         <div class="changelog-dialog__heading">
@@ -48,9 +48,9 @@ export default {
             <div class="changelog-dialog__title">What's new</div>
             <div class="changelog-dialog__subtitle">
               <template v-if="selectedChangelogEntry">
-                Orchard {{ changelogReleaseLabel(selectedChangelogEntry) }} · {{ selectedChangelogEntry.date }}
+                Kiroshi Music {{ changelogReleaseLabel(selectedChangelogEntry) }} · {{ selectedChangelogEntry.date }}
               </template>
-              <template v-else>Orchard release notes</template>
+              <template v-else>Kiroshi Music release notes</template>
             </div>
           </div>
           <div v-if="selectedChangelogEntry" class="changelog-dialog__count">
@@ -81,7 +81,7 @@ export default {
             @click="selectChangelogTab(tab.key)"
             @keydown="onChangelogTabKeydown($event, index)"
           >
-            <span class="changelog-tab__version">Orchard {{ changelogReleaseLabel(tab.entry) }}</span>
+            <span class="changelog-tab__version">Kiroshi Music {{ changelogReleaseLabel(tab.entry) }}</span>
             <span class="changelog-tab__date">
               {{ tab.entry.kind === 'update' ? 'Available now' : tab.entry.date }}
             </span>
@@ -99,7 +99,7 @@ export default {
           >
             <header class="changelog-release__summary">
               <div>
-                <strong>Orchard {{ changelogReleaseLabel(selectedChangelogEntry) }}</strong>
+                <strong>Kiroshi Music {{ changelogReleaseLabel(selectedChangelogEntry) }}</strong>
                 <span>{{ selectedChangelogEntry.date }}</span>
               </div>
               <span v-if="selectedChangelogEntry.kind === 'update'" class="changelog-release__status">

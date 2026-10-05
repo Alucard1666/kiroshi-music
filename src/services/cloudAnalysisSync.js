@@ -25,7 +25,7 @@ import {
 } from '../../shared/audioAnalysis.js';
 
 export const CLOUD_SYNC_DISCLAIMER =
-  'Audio analysis metadata (BPM, musical key, downbeats, cue points) is shared publicly with the Orchard Cloud cache by Track Video ID. No personal listening history, user playlists, or identifying info is included.';
+  'Audio analysis metadata (BPM, musical key, downbeats, cue points) is shared publicly with the Kiroshi Music Cloud cache by Track Video ID. No personal listening history, user playlists, or identifying info is included.';
 
 /**
  * Uploads a locally analyzed track's features to Supabase if authenticated.

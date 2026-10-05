@@ -42,7 +42,7 @@ export function installLifecycle(ctx) {
     ctx.networkOffline.value = true;
     if (ctx.activeView.value === 'home') {
       ctx.errorMessage.value = '';
-      ctx.warningMessage.value = 'Orchard is offline. Showing downloaded music.';
+      ctx.warningMessage.value = 'Kiroshi Music is offline. Showing downloaded music.';
     }
   };
 
@@ -58,8 +58,6 @@ export function installLifecycle(ctx) {
   });
 
   watch(ctx.activeView, async (view) => {
-    ctx.scheduleSupportPolling();
-    if (view === 'support') await ctx.loadSupportReports({ quiet: true });
     if (view !== 'browse') {
       ctx.cancelBrowseTrackPrefetch();
       return;
@@ -363,7 +361,7 @@ export function installLifecycle(ctx) {
     try {
       await window.orchardApp?.restart?.();
     } catch (error) {
-      ctx.graphicsModeMessage.value = error.message || 'Could not restart Orchard.';
+      ctx.graphicsModeMessage.value = error.message || 'Could not restart Kiroshi Music.';
     }
   };
 
@@ -467,11 +465,6 @@ export function installLifecycle(ctx) {
     ctx.bindSystemMediaEvents();
     ctx.bindDesktopControls();
     ctx.showChangelogAfterUpgrade();
-    if (new URLSearchParams(window.location.search).get('welcome') !== '1') {
-      ctx.loadSupportReports({ quiet: true });
-      ctx.scheduleSupportPolling();
-      window.addEventListener('focus', ctx.refreshSupportOnFocus);
-    }
 
     ctx.socket.value = io(`http://127.0.0.1:${ctx.socketPort()}`, {
       auth: { rendererToken: ctx.rendererToken() },
@@ -540,14 +533,12 @@ export function installLifecycle(ctx) {
     ctx.updateUnsubscribe?.();
     ctx.clearSystemMediaEvents();
     ctx.clearDesktopControls();
-    ctx.stopSupportPolling();
     ctx.clearMediaSessionHandlers();
     ctx.unbindSettingsStorageSync?.();
     window.removeEventListener('keydown', ctx.onGlobalKeydown);
     window.removeEventListener('resize', ctx.syncViewportSize);
     window.removeEventListener('online', refreshHomeAfterReconnect);
     window.removeEventListener('offline', showOfflineHome);
-    window.removeEventListener('focus', ctx.refreshSupportOnFocus);
     document.removeEventListener('fullscreenchange', ctx.onFullscreenPlayerChange);
     ctx.socket.value?.disconnect();
   });

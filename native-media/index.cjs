@@ -22,12 +22,18 @@
 // resolves every napi_* symbol from the host executable at runtime, so the same
 // binary loads under node and electron alike.
 const path = require('node:path');
+const fs = require('node:fs');
 
 const BINARY_DIRECTORY = path.join(__dirname, 'build');
 
-function binaryName() {
+function resolveBinary() {
   const architecture = process.arch === 'arm64' ? 'arm64' : 'x64';
-  return `orchard-system-media-${process.platform}-${architecture}.node`;
+  const name = `orchard-system-media-${process.platform}-${architecture}.node`;
+  const candidateInBuild = path.join(BINARY_DIRECTORY, name);
+  if (fs.existsSync(candidateInBuild)) return candidateInBuild;
+  const candidateInDir = path.join(__dirname, name);
+  if (fs.existsSync(candidateInDir)) return candidateInDir;
+  return candidateInBuild;
 }
 
-module.exports = require(path.join(BINARY_DIRECTORY, binaryName()));
+module.exports = require(resolveBinary());

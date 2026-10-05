@@ -140,7 +140,7 @@ export function installChangelogActions(ctx) {
           date: 'Available now',
           sections: ctx.hasUpdateReleaseNotes.value
             ? ctx.updateReleaseNoteSections.value
-            : [{ title: 'Update', items: ['A newer Orchard release is available.'] }]
+            : [{ title: 'Update', items: ['A newer Kiroshi Music release is available.'] }]
         }
       });
     }

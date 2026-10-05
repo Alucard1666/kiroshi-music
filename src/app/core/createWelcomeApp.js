@@ -26,7 +26,6 @@ import {
   normalizeLayoutPreset
 } from '../appearance/appearancePreferences.js';
 import { copyTextToClipboard } from '../platform/clipboardText.js';
-import { installSupportActions } from '../platform/supportActions.js';
 import {
   audioEngineConfigForCrossfadeMode,
   crossfadeModeForAudioEngine
@@ -179,7 +178,7 @@ export function createWelcomeApp() {
   ctx.emitWithReply = function emitWithReply(event, payload = {}) {
     return new Promise((resolve, reject) => {
       if (!ctx.socket.value?.connected) {
-        reject(new Error('The Orchard bridge is offline.'));
+        reject(new Error('The Kiroshi Music bridge is offline.'));
         return;
       }
       ctx.socket.value.emit(event, payload, (response) => {
@@ -232,7 +231,7 @@ export function createWelcomeApp() {
 
   ctx.completeWelcomeSetup = async function completeWelcomeSetup() {
     if (!ctx.authState.value.signedIn) {
-      ctx.errorMessage.value = 'Sign in before opening Orchard.';
+      ctx.errorMessage.value = 'Sign in before opening Kiroshi Music.';
       return false;
     }
     ctx.persistPreferences();
@@ -249,12 +248,11 @@ export function createWelcomeApp() {
       });
       return true;
     } catch (error) {
-      ctx.errorMessage.value = error?.message || 'Could not open Orchard.';
+      ctx.errorMessage.value = error?.message || 'Could not open Kiroshi Music.';
       return false;
     }
   };
 
-  installSupportActions(ctx);
   ctx.collectDiagnostics = async function collectDiagnostics() {
     const appInfo = await window.orchardApp?.diagnostics?.().catch?.(() => ({})) || {};
     const report = {
@@ -320,7 +318,6 @@ export function createWelcomeApp() {
   });
 
   onBeforeUnmount(() => {
-    ctx.stopSupportPolling();
     ctx.socket.value?.disconnect();
   });
 

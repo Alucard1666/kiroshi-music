@@ -21,12 +21,27 @@
 // napi-rs resolves every napi_* symbol from the host executable at runtime, so
 // the same analysis/transition binary loads under Node and Electron alike.
 const path = require('node:path');
+const fs = require('node:fs');
 
 const BINARY_DIRECTORY = path.join(__dirname, 'build');
 
-function binaryName() {
+function resolveBinary() {
   const architecture = process.arch === 'arm64' ? 'arm64' : 'x64';
-  return `orchard-audio-${process.platform}-${architecture}.node`;
+  const names = [
+    `orchard-audio-${process.platform}-${architecture}.node`,
+    `orchard-audio-transition-${process.platform}-${architecture}.node`,
+    `kiroshi-music-audio-${process.platform}-${architecture}.node`
+  ];
+  const searchDirs = [BINARY_DIRECTORY, __dirname];
+
+  for (const dir of searchDirs) {
+    for (const name of names) {
+      const full = path.join(dir, name);
+      if (fs.existsSync(full)) return full;
+    }
+  }
+
+  return path.join(BINARY_DIRECTORY, names[0]);
 }
 
-module.exports = require(path.join(BINARY_DIRECTORY, binaryName()));
+module.exports = require(resolveBinary());

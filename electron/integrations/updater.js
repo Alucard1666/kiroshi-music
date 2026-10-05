@@ -43,8 +43,8 @@ const { app, BrowserWindow, dialog, ipcMain, net } = require('electron');
 const DEFAULT_ARTIST_PACK_INDEX_URL = 'https://artist-packs.sfg545.dev/v1/index.json';
 const { UPDATES } = IPC_CHANNELS;
 const ARTIST_PACK_MAX_BYTES = 50 * 1024 * 1024;
-const GITHUB_OWNER = 'sfg5453';
-const GITHUB_REPO = 'orchard';
+const GITHUB_OWNER = 'kiroshi-os';
+const GITHUB_REPO = 'kiroshi-music';
 const GITHUB_RELEASES_URL = `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases`;
 const GITHUB_RELEASES_API_URL = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/releases?per_page=20`;
 const UPDATE_CHANNELS = ['stable', 'beta'];
@@ -239,17 +239,17 @@ async function fetchOfficialPackEntries(archiveUrl) {
 
 export function setupOrchardUpdates({ isDev }) {
   const packageUrlOverride = normalizeUpdateUrl(process.env.ORCHARD_PACKAGE_URL);
-  const updateUrl = packageUrlOverride || GITHUB_RELEASES_URL;
+  const updateUrl = '';
   const artistPackIndexUrl = normalizeContentIndexUrl(process.env.ORCHARD_ARTIST_PACK_INDEX_URL);
   const sourceBuild = isDevelopmentBuild({ app, isDev });
-  const updateChecksEnabled = !sourceBuild;
+  const updateChecksEnabled = false;
   const artistPackService = createArtistPackService({
     app,
     BrowserWindow,
     dialog,
     devOfficialPackContent: sourceBuild ? loadDevOfficialPackContent : null
   });
-  const disabledMessage = 'Updates are disabled for development builds.';
+  const disabledMessage = 'Updates are managed by the system package manager.';
   let checkPromise = null;
   let availablePackageRelease = null;
   let availablePackageBaseURL = packageUrlOverride;
@@ -257,8 +257,8 @@ export function setupOrchardUpdates({ isDev }) {
   let packageUpdatePromise = null;
   const fetchWithNet = (url, options) => net.fetch(url, options);
   let state = {
-    status: updateChecksEnabled ? 'idle' : 'disabled',
-    message: updateChecksEnabled ? 'Updates are ready.' : disabledMessage,
+    status: 'disabled',
+    message: disabledMessage,
     version: app.getVersion(),
     updateUrl,
     channel: DEFAULT_UPDATE_CHANNEL,
@@ -267,10 +267,10 @@ export function setupOrchardUpdates({ isDev }) {
     releaseNotes: [],
     progress: null,
     error: '',
-    dev: sourceBuild,
+    dev: false,
     external: false,
     packageType: '',
-    packageLabel: 'Orchard package service',
+    packageLabel: 'Kiroshi Music package',
     downloadedFile: '',
     downloadAvailable: false,
     content: {
@@ -305,6 +305,7 @@ export function setupOrchardUpdates({ isDev }) {
   }
 
   async function checkPackageServiceUpdate() {
+    if (!updateChecksEnabled) return state;
     publish({ status: 'checking', message: 'Checking for updates...', progress: null, error: '' });
     let manifestUrl;
     if (packageUrlOverride) {
@@ -314,11 +315,11 @@ export function setupOrchardUpdates({ isDev }) {
       const releases = await fetchJson(GITHUB_RELEASES_API_URL, {
         headers: {
           accept: 'application/vnd.github+json',
-          'user-agent': `OrchardDesktop/${state.version}`
+          'user-agent': `KiroshiMusicDesktop/${state.version}`
         }
       }, fetchWithNet);
       const source = latestPackageManifest(releases, state.channel);
-      if (!source) throw new Error(`No ${state.channel} Orchard package release is currently available.`);
+      if (!source) throw new Error(`No ${state.channel} Kiroshi Music package release is currently available.`);
       manifestUrl = source.manifestUrl;
       availablePackageBaseURL = source.baseURL;
     }
@@ -329,14 +330,14 @@ export function setupOrchardUpdates({ isDev }) {
       target: packageServiceTarget()
     });
     if (!latest) {
-      throw new Error(`No ${state.channel} Orchard package is available for ${packageServiceTarget()}.`);
+      throw new Error(`No ${state.channel} Kiroshi Music package is available for ${packageServiceTarget()}.`);
     }
     availablePackageRelease = latest;
     preparedPackageUpdate = null;
     if (!updateAvailable) {
       return publish({
         status: 'current',
-        message: 'Orchard is up to date.',
+        message: 'Kiroshi Music is up to date.',
         availableVersion: latest.version,
         releaseDate: '',
         releaseNotes: [],
@@ -349,7 +350,7 @@ export function setupOrchardUpdates({ isDev }) {
     const totalSize = Number(latest.shared?.size || 0) + Number(native?.size || 0);
     return publish({
       status: 'available',
-      message: `Orchard ${latest.version} is ready to download${totalSize > 0 ? ` (${formatUpdateBytes(totalSize)})` : ''}.`,
+      message: `Kiroshi Music ${latest.version} is ready to download${totalSize > 0 ? ` (${formatUpdateBytes(totalSize)})` : ''}.`,
       availableVersion: latest.version,
       releaseDate: '',
       releaseNotes: [],
@@ -360,6 +361,7 @@ export function setupOrchardUpdates({ isDev }) {
   }
 
   async function installPackageServiceUpdate(options = {}) {
+    if (!updateChecksEnabled) return state;
     if (state.status === 'downloaded' && preparedPackageUpdate) {
       publish({ status: 'installing', message: 'Restarting to install the update…', progress: null, error: '' });
       await launchPreparedPackageServiceUpdate(preparedPackageUpdate, {
@@ -377,7 +379,7 @@ export function setupOrchardUpdates({ isDev }) {
       try {
         publish({
           status: 'downloading',
-          message: `Downloading Orchard ${release.version}…`,
+          message: `Downloading Kiroshi Music ${release.version}…`,
           progress: { percent: 0, transferred: 0, total: 0, bytesPerSecond: 0 },
           error: ''
         });
@@ -401,7 +403,7 @@ export function setupOrchardUpdates({ isDev }) {
         });
         return publish({
           status: 'downloaded',
-          message: `Orchard ${release.version} is ready to install.`,
+          message: `Kiroshi Music ${release.version} is ready to install.`,
           progress: null,
           error: '',
           downloadAvailable: false

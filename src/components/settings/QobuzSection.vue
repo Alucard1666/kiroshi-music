@@ -104,7 +104,7 @@ export default {
     <div class="settings-row__copy">
       <label>Qobuz lossless playback</label>
       <p v-if="state.status === 'connected'">
-        Use your Qobuz subscription as an optional lossless source. Orchard still uses YouTube Music
+        Use your Qobuz subscription as an optional lossless source. Kiroshi Music still uses YouTube Music
         for its catalog and safely falls back when it cannot identify the same recording.
       </p>
       <p v-else>

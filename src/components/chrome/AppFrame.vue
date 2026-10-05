@@ -39,7 +39,6 @@ const SongActionMenu = defineAsyncComponent(() => import('../controls/SongAction
 const SongShareDialog = defineAsyncComponent(() => import('../dialogs/SongShareDialog.vue'));
 const SponsorSkipButton = defineAsyncComponent(() => import('../player/SponsorSkipButton.vue'));
 const SpotlightSearch = defineAsyncComponent(() => import('../controls/SpotlightSearch.vue'));
-const SupportView = defineAsyncComponent(() => import('../views/SupportView.vue'));
 const VideoPlayer = defineAsyncComponent(() => import('../player/VideoPlayer.vue'));
 
 const AnimatedBackground = defineAsyncComponent(() => import('../animated-background/AnimatedBackground.vue'));
@@ -86,7 +85,6 @@ export default {
     SectionMoreView,
     SettingsView,
     SmartCrossfadeMixOverlay,
-    SupportView,
     UpdateDialog,
     SongActionMenu,
     SongShareDialog,
@@ -193,7 +191,7 @@ export default {
     <q-page-container>
       <q-page
         class="page"
-        :class="{ 'page--search': activeView === 'search', 'page--settings': activeView === 'settings', 'page--support': activeView === 'support', 'page--browse': activeView === 'browse', 'page--auth': showAuthGate && activeView !== 'support' }"
+        :class="{ 'page--search': activeView === 'search', 'page--settings': activeView === 'settings', 'page--browse': activeView === 'browse', 'page--auth': showAuthGate }"
         :style="pageStyle"
       >
         <header class="topbar" :class="{ 'topbar--home': activeView === 'home', 'topbar--search': activeView === 'search' }">
@@ -271,8 +269,7 @@ export default {
           />
         </div>
 
-        <SupportView v-if="activeView === 'support'" :app="app" />
-        <AuthGate v-else-if="showAuthGate" :app="app" />
+        <AuthGate v-if="showAuthGate" :app="app" />
         <SettingsView v-else-if="activeView === 'settings'" :app="app" />
         <SectionMoreView v-else-if="activeView === 'sectionMore'" :app="app" />
         <BrowseDetailView v-else-if="activeView === 'browse'" :app="app" />

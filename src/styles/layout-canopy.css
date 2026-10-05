@@ -426,7 +426,6 @@ html[data-layout-preset="canopy"] .page {
 
 html[data-layout-preset="canopy"] .content-shell,
 html[data-layout-preset="canopy"] .settings-view,
-html[data-layout-preset="canopy"] .support-view,
 html[data-layout-preset="canopy"] .detail-page,
 html[data-layout-preset="canopy"] .search-view {
   max-width: 1560px;
@@ -1179,7 +1178,6 @@ html[data-layout-preset="canopy"] .settings-index a {
 
   html[data-layout-preset="canopy"] .content-shell,
   html[data-layout-preset="canopy"] .settings-view,
-  html[data-layout-preset="canopy"] .support-view,
   html[data-layout-preset="canopy"] .detail-page,
   html[data-layout-preset="canopy"] .search-view,
   html[data-layout-preset="canopy"] .topbar {

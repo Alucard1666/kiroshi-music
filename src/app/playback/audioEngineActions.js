@@ -242,8 +242,8 @@ export function installAudioEngineActions(ctx) {
   };
 
   ctx.exportAudioEngineProfile = function exportAudioEngineProfile() {
-    downloadJson('orchard-audio-profile.json', {
-      app: 'orchard',
+    downloadJson('kiroshi-music-audio-profile.json', {
+      app: 'kiroshi-music',
       type: 'audio-engine-profile',
       version: 1,
       config: ctx.audioEngineConfig.value

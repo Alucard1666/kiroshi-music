@@ -481,7 +481,7 @@ export function installConnectActions(ctx) {
           ...existingPending.filter((item) => item.id !== request.id)
         ]
       });
-      ctx.orchardConnectPairingMessage.value = `${request.name || 'Phone'} wants to control Orchard.`;
+      ctx.orchardConnectPairingMessage.value = `${request.name || 'Phone'} wants to control Kiroshi Music.`;
     });
     ctx.socket.value.on('connect:pairing-state', (state) => mergeConnectState(ctx, state));
     ctx.socket.value.on('connect:remote-command', ctx.handleConnectCommand);

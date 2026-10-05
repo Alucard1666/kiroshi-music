@@ -37,7 +37,6 @@ const STORAGE_KEYS = [
   'orchard:session-history',
   'orchard:audio-engine',
   'orchard:last-seen-changelog',
-  'orchard:support-identity',
   SETUP_STORAGE_KEY
 ];
 
@@ -252,7 +251,7 @@ export function installReadinessActions(ctx) {
     {
       key: 'connect',
       icon: 'phonelink',
-      title: 'Prepare Orchard Connect',
+      title: 'Prepare Kiroshi Music Connect',
       detail: ctx.orchardConnect.value.devices.length
         ? `${ctx.orchardConnect.value.devices.length} phone${ctx.orchardConnect.value.devices.length === 1 ? '' : 's'} paired.`
         : 'Generate a QR code and pair a phone on your LAN.',
@@ -291,7 +290,7 @@ export function installReadinessActions(ctx) {
 
   ctx.completeWelcomeSetup = async function completeWelcomeSetup() {
     if (!ctx.authState.value.signedIn) {
-      ctx.errorMessage.value = 'Sign in before opening Orchard.';
+      ctx.errorMessage.value = 'Sign in before opening Kiroshi Music.';
       return false;
     }
 
@@ -305,7 +304,7 @@ export function installReadinessActions(ctx) {
       await window.orchardApp.finishWelcome(welcomeSettingsSnapshot(ctx));
       return true;
     } catch (error) {
-      ctx.errorMessage.value = error?.message || 'Could not open Orchard.';
+      ctx.errorMessage.value = error?.message || 'Could not open Kiroshi Music.';
       return false;
     }
   };
@@ -350,7 +349,7 @@ export function installReadinessActions(ctx) {
         detail: ctx.updateState.value.message || ctx.updateStatusLabel.value
       },
       {
-        label: 'Orchard Connect',
+        label: 'Kiroshi Music Connect',
         status: connectStable ? 'ok' : 'warning',
         detail: connectStable ? ctx.orchardConnect.value.serverUrl : 'Waiting for bridge state'
       },
@@ -434,7 +433,7 @@ export function installReadinessActions(ctx) {
     }
 
     const backup = {
-      app: 'orchard',
+      app: 'kiroshi-music',
       schemaVersion: BACKUP_SCHEMA_VERSION,
       orchardVersion: ctx.appVersion,
       exportedAt: new Date().toISOString(),
@@ -442,7 +441,7 @@ export function installReadinessActions(ctx) {
       connectDevices
     };
     const day = new Date().toISOString().slice(0, 10);
-    downloadJson(`orchard-backup-${ctx.appVersion}-${day}.json`, backup);
+    downloadJson(`kiroshi-music-backup-${ctx.appVersion}-${day}.json`, backup);
     ctx.updateSetupState({ backupCreatedAt: Date.now() });
     ctx.backupMessage.value = 'Backup downloaded.';
   };
@@ -487,8 +486,8 @@ export function installReadinessActions(ctx) {
   ctx.importOrchardBackup = async function importOrchardBackup(file) {
     if (!file) return;
     const backup = JSON.parse(await readFileAsText(file));
-    if (backup?.app !== 'orchard' || backup.schemaVersion !== BACKUP_SCHEMA_VERSION || !backup.storage) {
-      throw new Error('That file is not a compatible Orchard backup.');
+    if ((backup?.app !== 'orchard' && backup?.app !== 'kiroshi-music') || backup.schemaVersion !== BACKUP_SCHEMA_VERSION || !backup.storage) {
+      throw new Error('That file is not a compatible Kiroshi Music backup.');
     }
 
     for (const [key, value] of Object.entries(backup.storage)) {
@@ -515,6 +514,6 @@ export function installReadinessActions(ctx) {
     ctx.replayEvents.value = readArrayStorage('orchard:replay-events');
     ctx.sessionHistory.value = readArrayStorage('orchard:session-history');
     ctx.setupState.value = { ...ctx.setupState.value, ...readStoredJson(SETUP_STORAGE_KEY, {}) };
-    ctx.backupMessage.value = 'Backup restored. Restart Orchard to reload the saved queue and history.';
+    ctx.backupMessage.value = 'Backup restored. Restart Kiroshi Music to reload the saved queue and history.';
   };
 }

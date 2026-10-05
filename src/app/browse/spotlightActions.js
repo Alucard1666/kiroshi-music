@@ -50,7 +50,7 @@ export function installSpotlightActions(ctx) {
     const rows = [
       {
         id: 'search',
-        title: query ? `Search for "${query}"` : 'Search Orchard',
+        title: query ? `Search for "${query}"` : 'Search Kiroshi Music',
         subtitle: query ? 'Open full results' : 'Songs, albums, artists, videos, and playlists',
         icon: 'search',
         disabled: !ctx.authState.value.signedIn || !query,
@@ -121,13 +121,6 @@ export function installSpotlightActions(ctx) {
         subtitle: 'Playback, appearance, backup, and diagnostics',
         icon: 'settings',
         run: () => ctx.openSpotlightView('settings')
-      },
-      {
-        id: 'support',
-        title: 'Support',
-        subtitle: ctx.supportUnreadCount?.value ? `${ctx.supportUnreadCount.value} unread` : 'Reports and replies',
-        icon: 'support_agent',
-        run: () => ctx.openSpotlightView('support')
       }
     ];
 

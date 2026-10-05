@@ -1,13 +1,14 @@
 {
-  "name": "orchard",
+  "name": "kiroshi-music",
+  "productName": "Kiroshi Music",
   "version": "5.0.0-beta.9",
-  "description": "A Quasar, Vue, Socket.IO, Electron YouTube Music client backed by InnerTube.",
-  "homepage": "https://github.com/sfg5453/orchard",
+  "description": "YouTube Music client for Kiroshi OS",
+  "homepage": "https://github.com/kiroshi-os/kiroshi-music",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sfg5453/orchard.git"
+    "url": "git+https://github.com/kiroshi-os/kiroshi-music.git"
   },
-  "desktopName": "dev.sfg.orchard",
+  "desktopName": "kiroshi-music",
   "main": "electron/main/index.js",
   "type": "module",
   "private": true,
@@ -24,10 +25,11 @@
     "fetch:beat-model": "node scripts/fetch-beat-this-model.mjs",
     "build:potoken-bundle": "node scripts/build-potoken-bundle.mjs",
     "build:native:media": "sh scripts/build-native-media.sh",
+    "package:arch": "sh scripts/build-arch-package.sh",
     "package:orchard": "bun run --cwd orchard-packages package:orchard",
     "package:orchard-packages:linux": "bun run --cwd orchard-packages package:linux",
     "package:orchard-packages:windows": "bun run --cwd orchard-packages package:windows",
-    "package:orchard-packages:arch": "bun run --cwd orchard-packages package:arch"
+    "package:orchard-packages:arch": "sh scripts/build-arch-package.sh"
   },
   "keywords": [
     "quasar",
@@ -37,8 +39,7 @@
     "ytmusic"
   ],
   "author": {
-    "name": "SFG545",
-    "email": "sfg@sfg545.dev"
+    "name": "Kiroshi OS"
   },
   "license": "AGPL-3.0-or-later",
   "dependencies": {

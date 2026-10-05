@@ -124,7 +124,7 @@ export default {
       <div class="search-menu__summary">
         <h1 v-if="isLiveShowsSearch">Live shows near {{ searchResult.location }}</h1>
         <h1 v-else-if="isLibraryCategory">{{ librarySection.title }}</h1>
-        <h1 v-else>{{ query.trim() ? `Results for “${query.trim()}”` : 'Search Orchard' }}</h1>
+        <h1 v-else>{{ query.trim() ? `Results for “${query.trim()}”` : 'Search Kiroshi Music' }}</h1>
         <p aria-live="polite">
           <template v-if="loading && isLibraryCategory">Loading {{ librarySection.title.toLowerCase() }}…</template>
           <template v-else-if="loading">Updating results as you type…</template>

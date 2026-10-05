@@ -31,7 +31,7 @@ export default {
   <section id="settings-setup" class="settings-section setup-guide" aria-labelledby="settings-setup-title">
     <div class="settings-section__heading">
       <h2 id="settings-setup-title">Setup</h2>
-      <p>{{ setupProgress.label }} ready for Orchard 1.0</p>
+      <p>{{ setupProgress.label }} ready for Kiroshi Music 1.0</p>
     </div>
 
     <div v-if="setupPanelOpen" class="setup-guide__body">

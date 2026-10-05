@@ -35,14 +35,14 @@ export default {
         Sending now-playing updates and completed listens as {{ lastfmState.user }}.
       </p>
       <p v-else-if="lastfmState.status === 'pending'">
-        Approve Orchard on Last.fm, then finish the connection.
+        Approve Kiroshi Music on Last.fm, then finish the connection.
       </p>
       <p v-else>
-        Connect an account to add Orchard listening history to Last.fm.
+        Connect an account to add Kiroshi Music listening history to Last.fm.
       </p>
       <small v-if="lastfmMessage" class="settings-status-message">{{ lastfmMessage }}</small>
       <small v-if="lastfmState.status === 'connected' && !lastfmState.secureStorage" class="settings-status-message">
-        Secure credential storage is unavailable, so this connection lasts until Orchard closes.
+        Secure credential storage is unavailable, so this connection lasts until Kiroshi Music closes.
       </small>
     </div>
     <div class="settings-actions lastfm-actions">

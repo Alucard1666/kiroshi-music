@@ -82,7 +82,7 @@ export default {
     <div class="settings-section__heading audio-engine__heading">
       <div>
         <h2 id="settings-audio-engine-title">Audio Engine</h2>
-        <p>Shape Orchard's sound and keep track-level adjustments between sessions.</p>
+        <p>Shape Kiroshi Music's sound and keep track-level adjustments between sessions.</p>
       </div>
       <q-toggle v-model="audioEngineConfig.enabled" color="primary" aria-label="Audio Engine" />
     </div>
@@ -187,7 +187,7 @@ export default {
     <div class="settings-row settings-row--slider">
       <div class="settings-row__copy">
         <label for="settings-output-gain">Global gain</label>
-        <p>Trim every track and playback path when Orchard's output is too loud or distorts.</p>
+        <p>Trim every track and playback path when Kiroshi Music's output is too loud or distorts.</p>
       </div>
       <div class="settings-slider">
         <q-slider
@@ -225,7 +225,7 @@ export default {
     <div class="settings-row audio-engine__output-row">
       <div class="settings-row__copy">
         <label for="settings-audio-output">Output device</label>
-        <p>Route Orchard independently when Chromium exposes system outputs.</p>
+        <p>Route Kiroshi Music independently when Chromium exposes system outputs.</p>
       </div>
       <select id="settings-audio-output" v-model="audioEngineConfig.outputDeviceId" class="audio-engine__select" :disabled="audioOutputLoading">
         <option v-for="device in audioOutputDevices" :key="device.deviceId" :value="device.deviceId">{{ device.label }}</option>

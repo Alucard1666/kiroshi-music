@@ -38,7 +38,7 @@ export const audioEngineConfigSchema = z.object({
 }).passthrough();
 
 export const audioEngineProfileSchema = z.object({
-  app: z.literal('orchard'),
+  app: z.enum(['orchard', 'kiroshi-music']),
   type: z.literal('audio-engine-profile'),
   version: z.number().int().min(1),
   config: audioEngineConfigSchema
@@ -58,6 +58,6 @@ export const learnedAudioProfilesSchema = z.array(learnedAudioProfileSchema);
 
 export function parseAudioEngineProfile(value) {
   const result = audioEngineProfileSchema.safeParse(value);
-  if (!result.success) throw new Error('That file is not a valid Orchard audio profile.');
+  if (!result.success) throw new Error('That file is not a valid Kiroshi Music audio profile.');
   return result.data;
 }

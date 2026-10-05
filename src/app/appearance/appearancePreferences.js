@@ -38,7 +38,7 @@ export { GRAPHICS_MODE_OPTIONS, normalizeGraphicsMode };
 
 export const ACCENT_COLOR_SOURCE_OPTIONS = [
   { label: 'Artwork', value: 'artwork' },
-  { label: 'Orchard', value: 'orchard' },
+  { label: 'Kiroshi Music', value: 'orchard' },
   { label: 'Custom', value: 'custom' }
 ];
 
@@ -60,7 +60,7 @@ export const IMMERSIVE_BACKGROUND_MOTION_OPTIONS = [
  *   Canopy - the 4.0.0 redesign: docked player, sticky compact header, centered content.
  */
 export const LAYOUT_PRESET_OPTIONS = [
-  { label: 'Grove', value: 'grove', description: 'The classic Orchard shell: roomy headers and a floating player island.' },
+  { label: 'Grove', value: 'grove', description: 'The classic Kiroshi Music shell: roomy headers and a floating player island.' },
   { label: 'Canopy', value: 'canopy', description: 'The 4.0.0 redesign: denser rails, a sticky compact header, and a docked player.' }
 ];
 
